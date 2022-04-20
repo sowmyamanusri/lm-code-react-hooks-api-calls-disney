@@ -2,7 +2,12 @@ import { DisneyCharacter } from "../disney_character"
 
 // for our props we can reuse the DisneyCharacter interface
 // - defining an anonymous type that just has one property - a DisneyCharacter
+
+
+
 const Character : React.FC<{ character: DisneyCharacter}> = ( { character }) => 
+
+
   
     <article className="character-item">
 

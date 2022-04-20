@@ -7,6 +7,7 @@ import Navigation from './components/navigation';
 import { DisneyCharacter } from './disney_character';
 import axios from 'axios';
 import getCharacter from './components/get_characters';
+import Pagination from './components/pagination';
 
 const App : React.FC = () => {
 
@@ -17,17 +18,19 @@ const App : React.FC = () => {
 
   useEffect(() => {
    const fetchCharacters = async() => {
-    const loadedCharacters = await getCharacter(1)
+    const loadedCharacters = await getCharacter(currentPage)
      setCharacters(loadedCharacters);
    }
    fetchCharacters();
-}, []);
+}, [currentPage]);
 
+ 
   return (
     <div className="page">
       <Header currentPage={currentPage} />
       <Navigation currentPage={currentPage} setCurrentPage={setCurrentPage} />
       <CharacterContainer characters={characters} />
+      <Pagination currentPage={currentPage} setCurrentPage={setCurrentPage} />
     </div>
   );
 }

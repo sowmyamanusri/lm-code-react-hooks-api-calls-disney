@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Mouse+Memoirs&display=swap");
 
+
 .page {
   margin: 0;
   font-family: "Mouse Memoirs";
@@ -80,6 +81,8 @@
 
 .character-item__img {
   max-height: 270px;
+  
+  
 }
 
 .character-item__actions {
@@ -88,3 +91,25 @@
   cursor: pointer;
   font-weight: lighter;
 }
+
+.pagination {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content:center;
+  text-align: center;
+  margin:10px auto;
+}
+.pagination__item{
+  margin-right: 5px;;
+}
+.pagination__btn{
+  font-family: "Mouse Memoirs";
+  background-color: #555;
+  border-radius: 4px;
+  font-size: 3vh;
+  padding: 5px;
+  color: #fff;
+  cursor: pointer;
+  min-width: 50px;
+}
+
