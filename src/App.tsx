@@ -5,7 +5,6 @@ import Header from './components/header';
 import CharacterContainer from './components/character_container';
 import Navigation from './components/navigation';
 import { DisneyCharacter } from './disney_character';
-import axios from 'axios';
 import getCharacter from './components/get_characters';
 import Pagination from './components/pagination';
 
@@ -15,6 +14,8 @@ const App : React.FC = () => {
 
   // Some dummy state representing disney characters
   const [characters, setCharacters] = useState<Array<DisneyCharacter>>([]);
+  const [characterFavorites, setCharacterFavorites] = useState<Array<number>>([]);
+
 
   useEffect(() => {
    const fetchCharacters = async() => {
@@ -29,7 +30,8 @@ const App : React.FC = () => {
     <div className="page">
       <Header currentPage={currentPage} />
       <Navigation currentPage={currentPage} setCurrentPage={setCurrentPage} />
-      <CharacterContainer characters={characters} />
+      <CharacterContainer characters={characters} characterFavorites ={characterFavorites}
+        updateFavorites ={setCharacterFavorites}/>
       <Pagination currentPage={currentPage} setCurrentPage={setCurrentPage} />
     </div>
   );
