@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { DisneyCharacter} from '../disney_character';
+
 
 
 const getCharacter = async (pageNumber:number) => {
