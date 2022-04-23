@@ -1,25 +1,21 @@
-import React from 'react';
-import { DisneyCharacter } from '../disney_character';
+import React,{useContext}  from 'react' ;
+import {FavoritesContext} from '../App';                                                                                            
+import { DisneyCharacter } from "../disney_character";
 import Character from './character';
 
-interface CharacterContainerProps{
+interface favoritedContainerProps{
     characters:Array<DisneyCharacter>;
     updateFavorites:(favorites:Array<DisneyCharacter>) => void;
 }
 
-// for our props we can reuse the DisneyCharacter interface
-// - defining an anonymous type that just has one property - an array of DisneyCharacter
-const CharacterContainer : React.FC<CharacterContainerProps> = ({characters,updateFavorites}) => {
-
-    
-
-	// this function separates our array of DisneyCharacters into rows and columns
-    const buildRows = () => {
+  const FavoritedContainer:React.FC<favoritedContainerProps>  =({characters,updateFavorites}) =>{
+    const characterFavorites =useContext(FavoritesContext);
+        const buildRows = () => {
         
 		// we'll need arrays to store the rows and cols in, and they will be of type JSX.Element
 		let rows : Array<JSX.Element> = [], cols : Array<JSX.Element> = [];
         
-		characters.forEach((character, index) => {
+		characterFavorites.forEach((character, index) => {
             cols.push(<Character key={character._id} character={character} 
                  updateFavorites ={updateFavorites}/>);
             if ((index + 1) % 5 === 0) {
@@ -35,7 +31,7 @@ const CharacterContainer : React.FC<CharacterContainerProps> = ({characters,upda
         // Final remaining columns
         if (cols.length > 0) {
             rows.push(
-                <div className="character-row" key={characters.length}>
+                <div className="character-row" key={characterFavorites.length}>
                     {cols}
                 </div>
             )
@@ -51,4 +47,5 @@ const CharacterContainer : React.FC<CharacterContainerProps> = ({characters,upda
     )
 }
 
-export default CharacterContainer;
+export default FavoritedContainer;
+  

@@ -6,7 +6,7 @@ import {FavoritesContext} from '../App';
 // - defining an anonymous type that just has one property - a DisneyCharacter
 interface  CharacterProps{
   character:DisneyCharacter;
-  updateFavorites:(favorites:Array<number>)=>void;
+  updateFavorites:(favorites:Array<DisneyCharacter>)=>void;
 }
 
 
@@ -14,11 +14,11 @@ const Character : React.FC<CharacterProps> = ( { character,updateFavorites}) => 
  
   const characterFavorites =useContext(FavoritesContext);
 
-function toggleFavoriteForCharacter(characterId:number){
-  if(!characterFavorites.includes(characterId)){
-    updateFavorites([...characterFavorites,characterId]);
+function toggleFavoriteForCharacter(character:DisneyCharacter){
+  if(!characterFavorites.includes(character)){
+    updateFavorites([...characterFavorites,character]);
   }else{
-    const updatedFavorites = characterFavorites.filter((id)=> id!== characterId);
+    const updatedFavorites = characterFavorites.filter((id)=> id!== character);
     updateFavorites(updatedFavorites)
   }
 }
@@ -33,8 +33,8 @@ if (character.imageUrl) {
 
       <h2>{character.name}</h2>
 
-      <div className="character-item__actions" onClick={() => toggleFavoriteForCharacter(character._id)}>
-      {!characterFavorites.includes(character._id) ? "Add to Favorites" : "Favorited"}
+      <div className="character-item__actions" onClick={() => toggleFavoriteForCharacter(character)}>
+      {!characterFavorites.includes(character) ? "Add to Favorites" : "Favorited"}
       </div>
 
       <img className="character-item__img" src={character.imageUrl} alt={character.name} />
@@ -45,4 +45,4 @@ if (character.imageUrl) {
   
 
 
-export default Character
+export default Character;
